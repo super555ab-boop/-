@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مستشفيات أسيوط الخضراء</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #1b4332;
+            --secondary: #2d6a4f;
+            --accent: #52b788;
+            --bg: #f8faf9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--bg);
+            margin: 0; padding: 0;
+            color: var(--primary);
+        }
+
+        /* الهيدر */
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 35px 15px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .container { padding: 20px; max-width: 500px; margin: auto; }
+
+        /* التحكم في الصفحات */
+        .page { display: none; animation: slideIn 0.3s ease-out; }
+        .active-page { display: block; }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        /* الأزرار الرئيسية */
+        .btn-main {
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            padding: 20px;
+            border-radius: 15px;
+            width: 100%;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+            text-align: right;
+        }
+
+        .btn-main i { font-size: 1.8rem; color: var(--accent); }
+        .btn-main h3 { margin: 0; font-size: 1.1rem; }
+
+        /* القوائم المنسدلة (Accordions) */
+        .accordion {
+            background: var(--white);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+            overflow: hidden;
+        }
+
+        .acc-header {
+            padding: 15px;
+            background: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: bold;
+            color: var(--secondary);
+        }
+
+        .acc-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: #fafafa;
+            padding: 0 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .acc-content.open {
+            max-height: 500px;
+            padding: 15px;
+            border-top: 1px solid #eee;
+        }
+
+        .back-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 30px;
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="home" class="page active-page">
+    <div class="header">
+        <i class="fas fa-leaf fa-3x"></i>
+        <h2>المستشفيات الخضراء أسيوط</h2>
+        <p>  فريق المستشفيات الخضراء</p>
+    </div>
+    
+    <div class="container">
+        <div class="btn-main" onclick="navTo('energyPage')">
+            <i class="fas fa-bolt"></i>
+            <div>
+                <h3>ترشيد استهلاك الموارد</h3>
+                <p>دليل الطاقة، المياه، والغاز</p>
+            </div>
+        </div>
+
+        <div class="btn-main" onclick="navTo('wastePage')">
+            <i class="fas fa-recycle"></i>
+            <div>
+                <h3>إدارة وفصل النفايات</h3>
+                <p>دليل الفصل الميداني الصحيح</p>
+            </div>
+        </div>
+
+        <div class="btn-main" onclick="navTo('visionPage')">
+            <i class="fas fa-star"></i>
+            <div>
+                <h3>رؤية مصر 2030 بأسيوط</h3>
+                <p>أهدافنا ومهام الفريق</p>
+            </div>
+        </div>
+        
+        <div class="footer">جميع الحقوق محفوظة - مديرية صحة أسيوط 2026</div>
+    </div>
+</div>
+
+<div id="energyPage" class="page">
+    <div class="container">
+        <button class="back-btn" onclick="navTo('home')"><i class="fas fa-arrow-right"></i> عودة</button>
+        <h2 style="color:var(--primary)"><i class="fas fa-plug"></i> دليل الترشيد المتقدم</h2>
+        
+        <div class="accordion">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <span>⚡ ترشيد الكهرباء والطاقة</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="acc-content">
+                • استبدال اللمبات بـ LED وتفعيل الحساسات.<br>
+                • ضبط أجهزة التكييف على 24 درجة مئوية.<br>
+                • فصل الأجهزة غير الحيوية بعد ساعات العمل.
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <span>💧 ترشيد استهلاك المياه</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="acc-content">
+                • تركيب موفرات تدفق (Aerators) على الصنابير.<br>
+                • الصيانة الدورية لمنع التسريبات في المحابس.<br>
+                • ري المساحات الخضراء في الصباح الباكر أو المساء.
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <span>🏢 المباني الخضراء</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="acc-content">
+                • الاعتماد على الإضاءة والتهوية الطبيعية قدر الإمكان.<br>
+                • استخدام عوازل حرارية للأسطح لتقليل حرارة المبنى.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="wastePage" class="page">
+    <div class="container">
+        <button class="back-btn" onclick="navTo('home')"><i class="fas fa-arrow-right"></i> عودة</button>
+        <h2 style="color:var(--primary)"><i class="fas fa-trash-alt"></i> معايير فصل النفايات</h2>
+        
+        <div class="accordion">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <span>🔴 النفايات الطبية الخطرة</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="acc-content">
+                توضع في <b>الكيس الأحمر</b>: تشمل الشاش الملوث، السرنجات، ومخلفات العمليات. يتم التعامل معها بالفرم والتعقيم.
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <span>⚫ النفايات العادية</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="acc-content">
+                توضع في <b>الكيس الأسود</b>: تشمل الورق، بقايا الطعام، والمخلفات المكتبية غير الملوثة.
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <span>📦 صناديق الأمان (Safety Box)</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="acc-content">
+                مخصصة للآلات الحادة فقط (السنون، الأمبولات المكسورة). يتم غلقها عند امتلاء 3/4 الصندوق.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="visionPage" class="page">
+    <div class="container">
+        <button class="back-btn" onclick="navTo('home')"><i class="fas fa-arrow-right"></i> عودة</button>
+        <h2 style="color:var(--primary)">🇪🇬 رؤية مصر 2030</h2>
+        
+        <div class="accordion">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <span>🎯 أهداف الفريق بأسيوط</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="acc-content">
+                • تحويل مستشفيات أسيوط لمنشآت خضراء معتمدة.<br>
+                • نشر ثقافة الاستدامة بين الطاقم الطبي.<br>
+                • تقليل البصمة البيئية الضارة للقطاع الصحي.
+            </div>
+        </div>
+
+        <div class="accordion">
+            <div class="acc-header" onclick="toggleAcc(this)">
+                <span>📞 التواصل والدعم</span>
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="acc-content">
+                يمكنكم التواصل مع فريق المستشفيات الخضراء بمديرية الصحة بأسيوط عبر مكتب الادارة الاستراتيجية لمزيد من الدعم الفني والمتابعة.
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // التنقل بين الصفحات
+    function navTo(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active-page'));
+        document.getElementById(pageId).classList.add('active-page');
+        window.scrollTo(0, 0);
+    }
+
+    // فتح وإغلاق القوائم المنسدلة
+    function toggleAcc(header) {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector('.fa-chevron-down');
+        
+        // إغلاق أي قائمة مفتوحة تانية
+        document.querySelectorAll('.acc-content').forEach(item => {
+            if (item !== content) item.classList.remove('open');
+        });
+
+        // فتح الحالية
+        content.classList.toggle('open');
+        icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+</script>
+
+</body>
+</html>
